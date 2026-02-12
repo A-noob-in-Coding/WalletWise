@@ -51,8 +51,8 @@ const Login = () => {
     } catch (error) {
       console.error('Login error:', error);
       const message =
-        error.response?.data?.message || 
-        error.response?.data?.errors?.[0]?.msg || 
+        error.response?.data?.message ||
+        error.response?.data?.errors?.[0]?.msg ||
         'Login failed. Please try again.';
       toast.error(message);
     } finally {
@@ -64,10 +64,11 @@ const Login = () => {
     <div className="auth-container">
       <ToastContainer position="top-right" autoClose={3000} />
 
+
       <div className="auth-card">
         <div className="auth-header">
           <h1>WalletWise</h1>
-          <p className="subtitle">Welcome back, student.</p>
+          <p className="subtitle">Welcome back! Login to continue.</p>
         </div>
 
         <form onSubmit={handleSubmit} className="auth-form">
@@ -92,14 +93,14 @@ const Login = () => {
               <FaLock className="input-icon" />
               Password
             </label>
-            <div className="password-input">
+            <div className="password-input-wrapper">
               <input
                 type={showPassword ? 'text' : 'password'}
                 id="password"
                 name="password"
                 value={password}
                 onChange={handleChange}
-                placeholder="Enter your password"
+                placeholder="Enter password (min 6 chars)"
                 required
               />
               <button
@@ -127,7 +128,14 @@ const Login = () => {
             className="auth-btn"
             disabled={loading}
           >
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? (
+              <>
+                <span className="spinner"></span>
+                Logging in...
+              </>
+            ) : (
+              'Login'
+            )}
           </button>
 
           <div className="auth-divider">
@@ -142,28 +150,22 @@ const Login = () => {
               window.location.href = `${apiBase}/auth/google`;
             }}
           >
+            <img
+              src="https://www.google.com/favicon.ico"
+              alt="Google"
+              className="google-icon"
+              style={{ width: '18px', marginRight: '8px' }}
+            />
             Continue with Google
           </button>
-
         </form>
 
         <div className="auth-footer">
           <p>
             Don't have an account?
-            <Link to="/signup" className="auth-link"> Sign Up</Link>
+            <Link to="/signup" className="auth-link">Sign Up</Link>
           </p>
         </div>
-      </div>
-
-      <div className="auth-features">
-        <h3>Why WalletWise?</h3>
-        <ul>
-          <li>Track expenses automatically</li>
-          <li>Set budgets that fit campus life</li>
-          <li>Mobile-friendly from day one</li>
-          <li>Private and secure by design</li>
-          <li>Student-first insights</li>
-        </ul>
       </div>
     </div>
   );
