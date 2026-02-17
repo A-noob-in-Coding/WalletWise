@@ -529,7 +529,7 @@
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--text-muted);
+  color: #475569;   /* darker muted */
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
@@ -538,8 +538,13 @@
   font-size: 2.2rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--text-main);
+  color: #0f172a;   /* strong readable */
   margin: 0.25rem 0;
+}
+
+.stat-trend,
+.progress-text {
+  color: #64748b;   /* accessible secondary */
 }
 
 .progress-container {
@@ -1152,3 +1157,4 @@ textarea:focus {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--brand-primary);
 }
+
